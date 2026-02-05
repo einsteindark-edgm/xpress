@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavbarWrapper from '../components/react/NavbarWrapper';
+import Hero from '../components/astro/Hero.astro';
+import Legal from '../components/astro/Legal.astro';
+import Services from '../components/astro/Services.astro';
+import Fleet from '../components/astro/Fleet.astro';
+import Booking from '../components/react/Booking';
+import Testimonials from '../components/astro/Testimonials.astro';
+import ContactCTA from '../components/astro/ContactCTA.astro';
+import Footer from '../components/astro/Footer.astro';
+import WhatsAppButton from '../components/react/WhatsAppButton';
+---
+
+<Layout title="Xpress VIP | Transporte Premium Villavicencio - Bogotá">
+	<div class="min-h-screen relative selection:bg-primary selection:text-black">
+		<NavbarWrapper client:load />
+		
+		<main>
+			<Hero />
+			<Legal />
+			<Services />
+			<Fleet />
+			<Booking client:visible />
+			<Testimonials />
+			<ContactCTA />
+		</main>
+
+		<Footer />
+		
+		<!-- Floating Action Button -->
+		<div class="fixed bottom-8 right-8 z-50">
+			<WhatsAppButton client:load />
+		</div>
+	</div>
+</Layout>

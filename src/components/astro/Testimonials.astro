@@ -1,0 +1,49 @@
+---
+const reviews = [
+  {
+    name: "Andrés Rodríguez",
+    role: "Ejecutivo Regional",
+    content: "La puntualidad de Xpress VIP es impecable. Viajo dos veces por semana a Bogotá y siempre es una experiencia relajante y profesional.",
+    rating: 5
+  },
+  {
+    name: "Carolina Méndez",
+    role: "Empresaria",
+    content: "Excelente servicio puerta a puerta. Las camionetas Duster están siempre en perfecto estado y los conductores conocen la vía al Llano mejor que nadie.",
+    rating: 5
+  },
+  {
+    name: "Juan Sebastián López",
+    role: "Consultor",
+    content: "Seguridad y comodidad total. Poder trabajar en el trayecto con la tranquilidad de un vehículo de placa blanca reglamentario no tiene precio.",
+    rating: 5
+  }
+];
+---
+
+<section class="py-32 bg-accent-dark">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-20">
+      <span class="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Experiencias Reales</span>
+      <h2 class="text-4xl md:text-6xl font-display font-bold text-white">Lo que dicen nuestros pasajeros</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {reviews.map((review) => (
+        <div class="bg-background-dark/50 p-10 rounded-[2rem] border border-white/5 relative group hover:border-primary/30 transition-all duration-500">
+          <span class="material-symbols-outlined text-6xl text-primary/10 absolute top-8 right-8">format_quote</span>
+          <div class="flex gap-1 mb-6">
+            {Array.from({ length: review.rating }).map(() => (
+              <span class="material-symbols-outlined text-primary text-sm font-fill">star</span>
+            ))}
+          </div>
+          <p class="text-slate-300 text-lg leading-relaxed mb-8 italic">"{review.content}"</p>
+          <div>
+            <p class="text-white font-bold text-xl">{review.name}</p>
+            <p class="text-primary text-xs uppercase tracking-widest font-bold">{review.role}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,161 @@
+---
+import { Image } from 'astro:assets';
+
+const features = [
+  { icon: 'airline_seat_recline_extra', title: 'Espacio Superior', desc: 'Asientos ergonómicos' },
+  { icon: 'luggage', title: 'Baúl de Gran Capacidad', desc: 'Para equipaje voluminoso' },
+  { icon: 'ac_unit', title: 'Climatización Dual', desc: 'Control de temperatura' },
+  { icon: 'gpp_good', title: 'Seguridad Integral', desc: 'Estabilidad avanzada' }
+];
+
+const fleetImages = [
+  { src: '/src/assets/fleet/logan-exterior.png', alt: 'Renault Logan Blanco Exterior', label: 'Elegancia Exterior' },
+  { src: '/src/assets/fleet/logan-road.png', alt: 'Renault Logan en Carretera', label: 'Potencia en Ruta' },
+  { src: '/src/assets/fleet/logan-interior.png', alt: 'Renault Logan Interior de Lujo', label: 'Confort Interior' }
+];
+---
+
+<section id="flota" class="py-48 bg-accent-dark overflow-hidden relative">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center gap-24">
+      <div class="flex-1 relative w-full">
+        <div class="absolute -inset-20 bg-primary/10 blur-[120px] rounded-full opacity-30"></div>
+        
+        {/* Interactive Gallery */}
+        <div class="relative overflow-hidden rounded-[3rem] aspect-[4/3] group shadow-[0_48px_100px_-12px_rgba(0,0,0,0.8)] border border-white/10" id="fleet-gallery">
+          {fleetImages.map((img, index) => (
+            <div 
+              class={`absolute inset-0 transition-opacity duration-1000 gallery-slide ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+              data-index={index}
+            >
+              <Image 
+                src={img.src} 
+                alt={img.alt}
+                class="w-full h-full object-cover transition-transform duration-[10000ms] ease-linear gallery-img" 
+                width={800}
+                height={600}
+                decoding="async"
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+              <div class="absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-12">
+                <div>
+                  <span class="text-primary text-xs tracking-widest uppercase mb-2 block">{img.label}</span>
+                  <p class="text-white font-display text-4xl font-bold">Renault Logan VIP</p>
+                </div>
+              </div>
+            </div>
+          ))}
+          
+          {/* Navigation Controls */}
+          <div class="absolute inset-x-0 bottom-12 flex justify-center gap-4 z-30">
+            {fleetImages.map((_, index) => (
+              <button 
+                class={`w-12 h-1 rounded-full transition-all duration-300 gallery-dot ${index === 0 ? 'bg-primary w-20' : 'bg-white/20'}`}
+                data-index={index}
+              ></button>
+            ))}
+          </div>
+
+          <button class="absolute left-6 top-1/2 -translate-y-1/2 z-30 bg-black/40 backdrop-blur-md p-4 rounded-full text-white hover:bg-primary hover:text-black transition-all opacity-0 group-hover:opacity-100" id="prev-fleet">
+            <span class="material-symbols-outlined">west</span>
+          </button>
+          <button class="absolute right-6 top-1/2 -translate-y-1/2 z-30 bg-black/40 backdrop-blur-md p-4 rounded-full text-white hover:bg-primary hover:text-black transition-all opacity-0 group-hover:opacity-100" id="next-fleet">
+            <span class="material-symbols-outlined">east</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="flex-1">
+        <span class="text-primary font-bold tracking-[0.5em] uppercase mb-6 block text-sm">Nuestra Flota</span>
+        <h2 class="text-5xl md:text-7xl font-display font-bold mb-10 text-white leading-tight">
+          Potencia y <span class="text-primary italic">Confort</span>
+        </h2>
+        
+        <p class="text-xl text-slate-400 mb-12 leading-relaxed font-light">
+          Disfrute del equilibrio perfecto en su viaje. Nuestros vehículos Renault Logan ofrecen la eficiencia y suavidad de marcha ideales para el trayecto entre Villavicencio y Bogotá, con acabados de lujo diseñados para su descanso.
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16">
+          {features.map((feature) => (
+            <div class="flex items-center gap-5 p-6 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors group">
+              <div class="text-primary p-3 bg-primary/10 rounded-xl group-hover:bg-primary group-hover:text-black transition-all">
+                <span class="material-symbols-outlined text-3xl">
+                  {feature.icon}
+                </span>
+              </div>
+              <div>
+                <p class="font-bold text-white text-lg">{feature.title}</p>
+                <p class="text-sm text-slate-500">{feature.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <a 
+          href="https://wa.me/573112376527?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20su%20flota%20de%20Renault%20Logan%20y%20cotizar%20un%20viaje." 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-4 text-primary font-bold text-xl hover:gap-6 transition-all group"
+        >
+          SOLICITAR COTIZACIÓN
+          <span class="material-symbols-outlined font-bold group-hover:translate-x-1 transition-transform">east</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById('fleet-gallery');
+    const slides = container?.querySelectorAll('.gallery-slide');
+    const dots = container?.querySelectorAll('.gallery-dot');
+    const nextBtn = document.getElementById('next-fleet');
+    const prevBtn = document.getElementById('prev-fleet');
+    
+    let currentIndex = 0;
+    const totalSlides = slides?.length || 0;
+
+    function showSlide(index: number) {
+      if (!slides || !dots) return;
+      
+      slides.forEach(s => {
+        (s as HTMLElement).style.opacity = '0';
+        s.classList.remove('z-10');
+        s.classList.add('z-0');
+      });
+      
+      dots.forEach(d => {
+        d.classList.remove('bg-primary', 'w-20');
+        d.classList.add('bg-white/20', 'w-12');
+      });
+
+      (slides[index] as HTMLElement).style.opacity = '1';
+      slides[index].classList.remove('z-0');
+      slides[index].classList.add('z-10');
+      
+      dots[index].classList.remove('bg-white/20', 'w-12');
+      dots[index].classList.add('bg-primary', 'w-20');
+      
+      currentIndex = index;
+    }
+
+    nextBtn?.addEventListener('click', () => {
+      let next = (currentIndex + 1) % totalSlides;
+      showSlide(next);
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      let prev = (currentIndex - 1 + totalSlides) % totalSlides;
+      showSlide(prev);
+    });
+
+    dots?.forEach((dot, idx) => {
+      dot.addEventListener('click', () => showSlide(idx));
+    });
+
+    // Auto-advance
+    setInterval(() => {
+      let next = (currentIndex + 1) % totalSlides;
+      showSlide(next);
+    }, 6000);
+  </script>
+</section>

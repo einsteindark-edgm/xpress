@@ -1,9 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-import loganExterior from '../../assets/fleet/logan-exterior.png';
-import loganRoad from '../../assets/fleet/logan-road.png';
-import loganInterior from '../../assets/fleet/logan-interior.png';
-
 const features = [
   { icon: 'airline_seat_recline_extra', title: 'Espacio Superior', desc: 'Asientos ergonómicos' },
   { icon: 'luggage', title: 'Baúl de Gran Capacidad', desc: 'Para equipaje voluminoso' },
@@ -12,9 +7,9 @@ const features = [
 ];
 
 const fleetImages = [
-  { src: loganExterior, alt: 'Renault Logan Blanco Exterior', label: 'Elegancia Exterior' },
-  { src: loganRoad, alt: 'Renault Logan en Carretera', label: 'Potencia en Ruta' },
-  { src: loganInterior, alt: 'Renault Logan Interior de Lujo', label: 'Confort Interior' }
+  { src: '/fleet/logan-exterior.png', alt: 'Renault Logan Blanco Exterior', label: 'Elegancia Exterior' },
+  { src: '/fleet/logan-road.png', alt: 'Renault Logan en Carretera', label: 'Potencia en Ruta' },
+  { src: '/fleet/logan-interior.png', alt: 'Renault Logan Interior de Lujo', label: 'Confort Interior' }
 ];
 ---
 
@@ -31,12 +26,12 @@ const fleetImages = [
               class={`absolute inset-0 transition-opacity duration-1000 gallery-slide ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
               data-index={index}
             >
-              <Image 
+              <img 
                 src={img.src} 
                 alt={img.alt}
                 class="w-full h-full object-cover transition-transform duration-[10000ms] ease-linear gallery-img" 
-                width={800}
-                height={600}
+                width="800"
+                height="600"
                 decoding="async"
                 loading={index === 0 ? "eager" : "lazy"}
               />

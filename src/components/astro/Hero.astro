@@ -1,17 +1,15 @@
 ---
-import { Image } from 'astro:assets';
-import heroImg from '../../assets/hero-bg.png';
 ---
 
 <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
   {/* Background Layer */}
   <div class="absolute inset-0 z-0">
-    <Image 
-      src={heroImg}
+    <img 
+      src="/hero-bg.png"
       alt="Renault Logan Blanco Xpress VIP" 
       class="w-full h-full object-cover" 
-      width={1920}
-      height={1080}
+      width="1920"
+      height="1080"
       loading="eager"
       fetchpriority="high"
       decoding="async"

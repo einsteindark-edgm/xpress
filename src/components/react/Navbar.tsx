@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../../assets/logo.png';
 
 interface NavbarProps {
   isScrolled: boolean;
@@ -15,7 +14,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             <img
               alt="Xpress Gold Logo"
               className="h-14 md:h-16 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
-              src={logo.src}
+              src="/logo.png"
             />
           </a>
         </div>

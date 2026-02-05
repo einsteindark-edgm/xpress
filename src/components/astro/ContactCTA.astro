@@ -1,10 +1,14 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+---
 <section id="contacto" class="py-48 bg-primary relative overflow-hidden">
   {/* Texture Overlay */}
   <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
   
   <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
     <div class="mb-20 inline-block p-8 bg-black rounded-[3rem] shadow-2xl">
-      <img src="/src/assets/logo.png" alt="Xpress VIP Logo" class="h-24 md:h-32 w-auto object-contain" />
+      <Image src={logo} alt="Xpress VIP Logo" class="h-24 md:h-32 w-auto object-contain" />
     </div>
     
     <h2 class="text-6xl md:text-8xl font-display font-bold text-black mb-12 tracking-tight">

@@ -1,9 +1,13 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+---
 <footer class="bg-background-dark py-32 border-t border-white/5 relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="flex flex-col md:flex-row justify-between items-start gap-20 mb-24">
       <div class="max-w-md">
         <div class="mb-10">
-          <img src="/src/assets/logo.png" alt="Xpress VIP Logo" class="h-16 w-auto object-contain" />
+          <Image src={logo} alt="Xpress VIP Logo" class="h-16 w-auto object-contain" />
         </div>
         <p class="text-slate-400 text-lg leading-relaxed mb-10">
           Servicio de transporte VIP élite entre Villavicencio y Bogotá. Operamos con los más altos estándares de seguridad y legalidad en el territorio nacional.

@@ -1,5 +1,8 @@
 ---
 import { Image } from 'astro:assets';
+import loganExterior from '../assets/fleet/logan-exterior.png';
+import loganRoad from '../assets/fleet/logan-road.png';
+import loganInterior from '../assets/fleet/logan-interior.png';
 
 const features = [
   { icon: 'airline_seat_recline_extra', title: 'Espacio Superior', desc: 'Asientos ergonómicos' },
@@ -9,9 +12,9 @@ const features = [
 ];
 
 const fleetImages = [
-  { src: '/src/assets/fleet/logan-exterior.png', alt: 'Renault Logan Blanco Exterior', label: 'Elegancia Exterior' },
-  { src: '/src/assets/fleet/logan-road.png', alt: 'Renault Logan en Carretera', label: 'Potencia en Ruta' },
-  { src: '/src/assets/fleet/logan-interior.png', alt: 'Renault Logan Interior de Lujo', label: 'Confort Interior' }
+  { src: loganExterior, alt: 'Renault Logan Blanco Exterior', label: 'Elegancia Exterior' },
+  { src: loganRoad, alt: 'Renault Logan en Carretera', label: 'Potencia en Ruta' },
+  { src: loganInterior, alt: 'Renault Logan Interior de Lujo', label: 'Confort Interior' }
 ];
 ---
 

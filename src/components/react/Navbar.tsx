@@ -21,9 +21,10 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
 
         <div className="flex items-center">
           <a
-            href="https://wa.me/573112376527?text=Hola%2C%20deseo%20realizar%20una%20reserva%20inmediata%20para%20un%20servicio%20de%20transporte%20VIP."
+            href="https://wa.me/573227070505?text=Hola%2C%20deseo%20realizar%20una%20reserva%20inmediata%20para%20un%20servicio%20de%20transporte%20VIP."
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => (window as any).trackMetaEvent?.('Contact', { location: 'navbar' })}
             className="bg-primary hover:bg-white text-black px-8 py-3 rounded-full font-bold text-sm transition-all shadow-lg shadow-primary/20 transform hover:-translate-y-1 block text-center"
           >
             RESERVAR AHORA

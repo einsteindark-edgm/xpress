@@ -23,7 +23,7 @@ const ContactCTA: React.FC = () => {
 
         <div className="flex flex-col md:flex-row justify-center items-stretch md:items-center gap-8 px-4">
           <a
-            href="https://wa.me/573112376527?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20atenci%C3%B3n%20personalizada%20para%20un%20servicio%20de%20transporte."
+            href="https://wa.me/573227070505?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20atenci%C3%B3n%20personalizada%20para%20un%20servicio%20de%20transporte."
             target="_blank"
             rel="noopener noreferrer"
             className="bg-black text-white px-16 py-8 rounded-full font-bold text-2xl hover:scale-105 transition-all flex items-center justify-center gap-5 shadow-3xl active:scale-95"

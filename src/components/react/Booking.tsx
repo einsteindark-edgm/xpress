@@ -141,7 +141,19 @@ const Booking: React.FC = () => {
                 </button>
               ) : (
                 <button
-                  onClick={() => window.open(`https://wa.me/573112376527?text=Hola,%20quisiera%20reservar%20un%20viaje%20${formData.type}%20en%20la%20ruta%20${formData.route}%20para%20el%20día%20${formData.date}`, '_blank')}
+                  onClick={() => {
+                    (window as any).trackMetaEvent?.('Lead', {
+                      content_name: 'Reserva VIP',
+                      content_category: formData.route,
+                      value: 0,
+                      currency: 'COP',
+                      route: formData.route,
+                      type: formData.type,
+                      date: formData.date
+                    });
+
+                    window.open(`https://wa.me/573227070505?text=Hola,%20quisiera%20reservar%20un%20viaje%20${formData.type}%20en%20la%20ruta%20${formData.route}%20para%20el%20día%20${formData.date}`, '_blank');
+                  }}
                   className="flex-1 py-5 bg-whatsapp text-white rounded-full font-extrabold flex items-center justify-center gap-3 hover:scale-[1.02] transition-all shadow-xl shadow-whatsapp/20"
                 >
                   Finalizar en WhatsApp

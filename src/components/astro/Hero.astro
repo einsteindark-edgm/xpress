@@ -39,16 +39,22 @@
         Su confort es nuestra prioridad en cada trayecto.
       </p>
       
-      <div class="flex flex-col sm:flex-row gap-6 animate-in slide-in-from-bottom-4 duration-700 delay-500">
         <a 
-          href="https://wa.me/573112376527?text=Hola%20Xpress%20VIP%2C%20me%20gustar%C3%ADa%20cotizar%20un%20viaje%20para%20el%20trayecto%20Villavicencio%20-%20Bogot%C3%A1." 
+          href="https://wa.me/573227070505?text=Hola%20Xpress%20VIP%2C%20me%20gustar%C3%ADa%20cotizar%20un%20viaje%20para%20el%20trayecto%20Villavicencio%20-%20Bogot%C3%A1." 
           target="_blank"
           rel="noopener noreferrer"
+          id="hero-whatsapp-btn"
           class="bg-primary text-black font-extrabold px-12 py-6 rounded-full flex items-center justify-center gap-4 hover:bg-white transition-all transform hover:-translate-y-1 shadow-2xl shadow-primary/30 group"
         >
           COTIZAR VIAJE
           <span class="material-symbols-outlined font-bold group-hover:translate-x-1 transition-transform">arrow_forward</span>
         </a>
+
+        <script is:inline>
+          document.getElementById('hero-whatsapp-btn')?.addEventListener('click', () => {
+             window.trackMetaEvent?.('Contact', { location: 'hero' });
+          });
+        </script>
         <a 
           href="#flota" 
           class="bg-white/5 backdrop-blur-md text-white border border-white/10 font-bold px-12 py-6 rounded-full flex items-center justify-center hover:bg-white/10 transition-all"

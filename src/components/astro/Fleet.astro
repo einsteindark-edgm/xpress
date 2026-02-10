@@ -90,14 +90,21 @@ const fleetImages = [
         </div>
         
         <a 
-          href="https://wa.me/573112376527?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20su%20flota%20de%20Renault%20Logan%20y%20cotizar%20un%20viaje." 
+          href="https://wa.me/573227070505?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20su%20flota%20de%20Renault%20Logan%20y%20cotizar%20un%20viaje." 
           target="_blank"
           rel="noopener noreferrer"
+          id="fleet-whatsapp-btn"
           class="inline-flex items-center gap-4 text-primary font-bold text-xl hover:gap-6 transition-all group"
         >
           SOLICITAR COTIZACIÓN
           <span class="material-symbols-outlined font-bold group-hover:translate-x-1 transition-transform">east</span>
         </a>
+
+        <script is:inline>
+          document.getElementById('fleet-whatsapp-btn')?.addEventListener('click', () => {
+             window.trackMetaEvent?.('Contact', { location: 'fleet' });
+          });
+        </script>
       </div>
     </div>
   </div>

@@ -2,12 +2,17 @@
 import React from 'react';
 
 const WhatsAppButton: React.FC = () => {
+  const handleTrack = () => {
+    (window as any).trackMetaEvent?.('Contact', { location: 'floating_button' });
+  };
+
   return (
     <a
       aria-label="Reserva por WhatsApp"
-      href="https://wa.me/573112376527?text=Hola%20Xpress%20VIP%2C%20me%20gustar%C3%ADa%20solicitar%20un%20servicio%20de%20transporte%20premium."
+      href="https://wa.me/573227070505?text=Hola%20Xpress%20VIP%2C%20me%20gustar%C3%ADa%20solicitar%20un%20servicio%20de%20transporte%20premium."
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleTrack}
       className="bg-whatsapp hover:bg-[#20ba5a] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-[0_20px_40px_-10px_rgba(37,211,102,0.5)] transition-all duration-300 hover:scale-110 active:scale-95 group relative"
     >
       <svg className="w-9 h-9 fill-current" viewBox="0 0 24 24">

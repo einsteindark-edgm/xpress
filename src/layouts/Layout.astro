@@ -24,54 +24,23 @@ const { title } = Astro.props;
 		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet" />
 		
 		<!-- Meta Pixel Code -->
-		<script is:inline>
-			!function(f,b,e,v,n,t,s)
-			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-			n.queue=[];t=b.createElement(e);t.async=!0;
-			t.src=v;s=b.getElementsByTagName(e)[0];
-			s.parentNode.insertBefore(t,s)}(window, document,'script',
-			'https://connect.facebook.net/en_US/fbevents.js');
-			
-			const PIXEL_ID = "1873651629941874"; // Updated Pixel ID
-			fbq('set', 'autoConfig', false, PIXEL_ID);
-			fbq('init', PIXEL_ID);
-			fbq('track', 'PageView');
-
-			// Unified Tracking Function
-			window.trackMetaEvent = async (eventName, eventData = {}) => {
+			// Unified Tracking Function via Cloudflare Zaraz
+			window.trackMetaEvent = (eventName, eventData = {}) => {
+				// Generates a unique event ID for deduplication if needed
 				const eventId = crypto.randomUUID();
-				const eventSourceUrl = window.location.href;
-
-				// 1. Pixel (Client)
-				if (window.fbq) {
-					fbq('track', eventName, eventData, { eventID: eventId });
-				}
-
-				// 2. CAPI (Server)
-				try {
-					await fetch('/api/meta-capi', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({
-							eventName,
-							eventId,
-							eventSourceUrl,
-							userData: {
-								custom_data: eventData
-							}
-						})
+				
+				if (typeof zaraz !== 'undefined') {
+					zaraz.track(eventName, {
+						...eventData,
+						event_id: eventId
 					});
-				} catch (e) {
-					console.error('CAPI Track Error:', e);
+				} else {
+					console.warn('Zaraz not loaded');
 				}
 			};
-		</script>
-		<noscript>
-			<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1873651629941874&ev=PageView&noscript=1" />
-		</noscript>
-		<!-- End Meta Pixel Code -->
+
+
+
 		
 		<style is:global>
 			.gold-gradient-text {

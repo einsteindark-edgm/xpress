@@ -27,18 +27,26 @@ const { title } = Astro.props;
 		<script is:inline>
 			// Unified Tracking Function via Cloudflare Zaraz
 			window.trackMetaEvent = (eventName, eventData = {}) => {
-				console.log('🚀 Attempting to track event:', eventName, eventData);
 				// Generates a unique event ID for deduplication if needed
 				const eventId = crypto.randomUUID();
 				
+				// Check for Meta Test Code in URL (for real-time testing in Events Manager)
+				const urlParams = new URLSearchParams(window.location.search);
+				const testCode = urlParams.get('fb_test_code');
+				
+				const finalData = {
+					...eventData,
+					event_id: eventId
+				};
+
+				if (testCode) {
+					finalData.test_event_code = testCode;
+				}
+				
 				if (typeof zaraz !== 'undefined') {
-					console.log('✅ Zaraz found. Sending event...');
-					zaraz.track(eventName, {
-						...eventData,
-						event_id: eventId
-					});
+					zaraz.track(eventName, finalData);
 				} else {
-					console.error('❌ Zaraz NOT found. Event not sent:', eventName);
+					console.warn('Zaraz not loaded');
 				}
 			};
 		</script>
